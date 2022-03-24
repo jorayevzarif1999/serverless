@@ -95,5 +95,11 @@ describe('test/unit/lib/cli/triage/index.test.js', () => {
         register('@serverless/components', 'us');
       }
     }
+
+    it('Should recognize "@serverless/compose" if "serverless-compose.yml" file present', async () => {
+      await overrideCwd(path.resolve(fixturesDirname, '@serverless/compose'), async () => {
+        expect(await triage()).to.equal('@serverless/compose');
+      });
+    });
   });
 });
